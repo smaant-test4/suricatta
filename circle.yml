@@ -4,9 +4,14 @@ jobs:
     executorType: docker
     containerInfo:
       - image: clojure:lein-2.7.1
+      - image: postgres:9.3-alpine
+        env:
+          - POSTGRES_USER=root
+          - POSTGRES_DB=test
+          
     workDir: ~/suricatta
     steps:
       - type: checkout
 
       - type: shell
-        command: echo YAY!
+        command: lein test-all
