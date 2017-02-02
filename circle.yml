@@ -4,11 +4,11 @@ jobs:
     pod:
       - image: alpine:3.5
 
-    working_directory: /
+    workDir: /
 
     steps:
-      - checkout:
+      - type: checkout
 
-      - shell:
-          shell: sh
-          command: echo YAY!
+      - type: shell
+        shell: sh
+        command: echo YAY!
