@@ -3,7 +3,7 @@ jobs:
   build:
     executorType: docker
     containerInfo:
-      - image: buildpack-deps:jessie-curl
+      - image: clojure:lein-2.7.1
     workDir: /
     steps:
       - type: checkout
