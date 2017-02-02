@@ -21,3 +21,6 @@ jobs:
 
       - type: cache-save
         key: v1-jars-{{ checksum "project.clj" }}
+        paths:
+          - ~/.m2
+
