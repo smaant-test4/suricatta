@@ -13,5 +13,11 @@ jobs:
     steps:
       - type: checkout
 
+      - type: cache-restore
+        key: v1-jars-{{ checksum "project.clj" }}
+        
       - type: shell
         command: lein test-all
+
+      - type: cache-save
+        key: v1-jars-{{ checksum "project.clj" }}
