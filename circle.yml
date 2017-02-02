@@ -1,11 +1,10 @@
 version: 2
 jobs:
   build:
-    pod:
+    executorType: docker
+    images:
       - image: alpine:3.5
-
     workDir: /
-
     steps:
       - type: checkout
 
