@@ -1,0 +1,14 @@
+version: 2
+jobs:
+  build:
+    pod:
+      - image: alpine:3.5
+
+    working_directory: /
+
+    steps:
+      - checkout
+
+      - shell:
+          shell: sh
+          command: echo YAY!
