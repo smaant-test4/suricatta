@@ -4,6 +4,7 @@ jobs:
     executorType: docker
     containerInfo:
       - image: alpine:3.5
+        cmd: ["/bin/sh"]
     workDir: /
     steps:
       - type: checkout
