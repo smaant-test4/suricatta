@@ -4,7 +4,7 @@ jobs:
     executorType: docker
     containerInfo:
       - image: clojure:lein-2.7.1
-    workDir: /
+    workDir: ~/suricatta
     steps:
       - type: checkout
 
