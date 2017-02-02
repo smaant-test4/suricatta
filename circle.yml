@@ -3,12 +3,10 @@ jobs:
   build:
     executorType: docker
     containerInfo:
-      - image: alpine:3.5
-        cmd: ["/bin/sh"]
+      - image: buildpack-deps:jessie-curl
     workDir: /
     steps:
       - type: checkout
 
       - type: shell
-        shell: sh
         command: echo YAY!
