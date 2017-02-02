@@ -7,7 +7,7 @@ jobs:
     working_directory: /
 
     steps:
-      - checkout
+      - checkout:
 
       - shell:
           shell: sh
