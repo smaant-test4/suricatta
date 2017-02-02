@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     executorType: docker
-    images:
+    containerInfo:
       - image: alpine:3.5
     workDir: /
     steps:
