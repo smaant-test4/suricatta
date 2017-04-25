@@ -24,3 +24,6 @@ jobs:
 
       - store_artifacts:
           path: test2junit
+
+      - store_test_results:
+          path: test2junit/xml
