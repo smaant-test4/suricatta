@@ -1,26 +1,26 @@
 version: 2
 jobs:
   build:
-    executorType: docker
-    containerInfo:
+    docker:
       - image: clojure:lein-2.7.1
       - image: postgres:9.3-alpine
-        env:
-          - POSTGRES_USER=root
-          - POSTGRES_DB=test
-          
-    workDir: ~/suricatta
+        environment:
+          POSTGRES_USER: root
+          POSTGRES_DB: test
+
+    working_directory: ~/suricatta
     steps:
-      - type: checkout
+      - checkout
 
-      - type: cache-restore
-        key: v1-jars-{{ checksum "project.clj" }}
-        
-      - type: shell
-        command: lein test-all
+      - restore_cache:
+          key: v1-jars-{{ checksum "project.clj" }}
 
-      - type: cache-save
-        key: v1-jars-{{ checksum "project.clj" }}
-        paths:
-          - ~/.m2
+      - run: lein test-all
 
+      - save_cache:
+          key: v1-jars-{{ checksum "project.clj" }}
+          paths:
+            - ~/.m2
+
+      - store_artifacts:
+          path: test2junit
