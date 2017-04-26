@@ -10,7 +10,7 @@
              :subname "mem:"})
 
 (def pgdbspec {:subprotocol "postgresql"
-               :subname "//127.0.0.1/test"})
+               :subname (str "//127.0.0.1:" (or (System/getenv "DB_PORT") "5432")  "/test")})
 
 (def ^:dynamic *ctx*)
 
