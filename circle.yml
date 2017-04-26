@@ -5,3 +5,7 @@ dependencies:
 test:
   override:
     - lein test-all
+
+  post:
+    - cp -r test2junit $CIRCLE_ARTIFACTS
+    - cp -r test2junit $CIRCLE_TEST_REPORTS
