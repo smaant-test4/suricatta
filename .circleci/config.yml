@@ -27,3 +27,20 @@ jobs:
 
       - store_test_results:
           path: test2junit/xml
+
+  deploy:
+    docker:
+      - image: alpine:3.4
+    working_directory: /
+    steps:
+      - run: echo YAY
+
+workflows:
+  version: 2
+  btd:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+  
