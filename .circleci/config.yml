@@ -1,5 +1,5 @@
 version: 2
-# build_agent: picard:0.0.3954-7f44c7a
+build_agent: picard:0.0.3962-44b670c
 jobs:
   build:
     docker:
@@ -13,19 +13,19 @@ jobs:
     steps:
       - checkout
 
-      # - run: ls -la /.circleci-task-data
+      - run: ls -la /.circleci-task-data || true
 
-      # - run: ls -la /.circleci-task-data/circle-test-results
+      - run: ls -la /.circleci-task-data/circle-test-results || true
 
-      # - run: cat /.circleci-task-data/circle-test-results/results.json
+      - run: cat /.circleci-task-data/circle-test-results/results.json || true
 
       - restore_cache:
-          key: v1-jars-{{ checksum "project.clj" }}
+          key: v4-jars-{{ checksum "project.clj" }}
 
       - run: lein test-all
 
       - save_cache:
-          key: v1-jars-{{ checksum "project.clj" }}
+          key: v4-jars-{{ checksum "project.clj" }}
           paths:
             - ~/.m2
 
@@ -46,6 +46,14 @@ jobs:
       - image: alpine:3.4
     working_directory: /
     steps:
+      - run: ls -la /.circleci-task-data || true
+
+      - run: ls -la /.circleci-task-data/circle-test-results || true
+
+      - run: cat /.circleci-task-data/circle-test-results/results.json || true
+
+      - run: apk update && apk add ca-certificates
+
       - attach_workspace:
           at: ~/suricatta
 
