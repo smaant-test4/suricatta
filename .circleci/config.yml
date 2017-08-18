@@ -1,4 +1,5 @@
 version: 2
+# build_agent: picard:0.0.3954-7f44c7a
 jobs:
   build:
     docker:
@@ -12,6 +13,12 @@ jobs:
     steps:
       - checkout
 
+      - run: ls -la /.circleci-task-data
+
+      - run: ls -la /.circleci-task-data/circle-test-results
+
+      - run: cat /.circleci-task-data/circle-test-results/results.json
+
       - restore_cache:
           key: v1-jars-{{ checksum "project.clj" }}
 
@@ -21,6 +28,12 @@ jobs:
           key: v1-jars-{{ checksum "project.clj" }}
           paths:
             - ~/.m2
+
+      - persist_to_workspace:
+          root: ~/suricatta
+          paths:
+            - project.clj
+          
 
       - store_artifacts:
           path: test2junit
@@ -33,6 +46,13 @@ jobs:
       - image: alpine:3.4
     working_directory: /
     steps:
+      - attach_workspace:
+          at: ~/suricatta
+
+      - run: ls ~/suricatta
+
+      - run: cat ~/suricatta/project.clj
+      
       - run: echo YAY
 
 workflows:
