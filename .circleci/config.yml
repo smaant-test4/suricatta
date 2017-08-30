@@ -22,6 +22,11 @@ jobs:
           paths:
             - ~/.m2
 
+      - persist_to_workspace:
+          root: ~/suricatta
+          paths:
+            - project.clj
+
       - store_artifacts:
           path: test2junit
 
@@ -33,6 +38,15 @@ jobs:
       - image: alpine:3.4
     working_directory: /
     steps:
+      - run: apk update && apk add ca-certificates
+
+      - attach_workspace:
+          at: ~/suricatta
+
+      - run: ls ~/suricatta
+
+      - run: cat ~/suricatta/project.clj
+      
       - run: echo YAY
 
 workflows:
