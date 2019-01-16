@@ -10,7 +10,7 @@ jobs:
 
     working_directory: ~/suricatta
     steps:
-      - run: 234234 echo "YAY"
+      - run: sleep 10 && echo "YAY"
 #       - checkout
 
 #       - restore_cache:
